@@ -1,0 +1,1 @@
+Inserção de uma nova classe para controle de sessão crítica, representada por uma ponte, que deve regular a travessia de carros.

@@ -1,0 +1,1 @@
+Algoritmo de Manna-Pnueli de processos cliente-servidor com e sem controle de sessão crítica.

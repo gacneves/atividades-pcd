@@ -1,0 +1,1 @@
+Modificações do Jogo da Vida em C usando OpenMP desenvolvido para a atividade 1, usando apenas regiões paralelas de for simples, com reduction e com lógica própria.
