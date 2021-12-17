@@ -1,0 +1,1 @@
+Versões do Jogo da Vida e do HighLife em linguagens C, utilizando o OpenMP, e Java para o monitoramento do uso de threads
