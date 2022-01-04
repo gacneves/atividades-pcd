@@ -31,13 +31,10 @@ int getNeighbors(int ** grid, int i, int j){
 int main(int argc, char * argv[]){
     int procId;
     int noProcs;
-    int procStartLine; // Starting line of the matrix for the process
-    int procEndLine;
     int ** grid, ** newGrid;
     int i, j;
     int alive;
     int prev, next;
-    int printCtrl;
     MPI_Status status;
 
     MPI_Init(&argc, &argv);
@@ -85,6 +82,9 @@ int main(int argc, char * argv[]){
 
     prev = (procId + noProcs - 1) % noProcs;
     next = (procId + 1) % noProcs;
+    double time = 0.0;
+    if(procId == 0)
+        time -= MPI_Wtime();
     for(int g = 0; g < T; g++){
         MPI_Sendrecv(grid[1], N, MPI_INT, prev, 10,
             grid[N/noProcs+1], N, MPI_INT, next, 10, MPI_COMM_WORLD, &status);
@@ -119,6 +119,10 @@ int main(int argc, char * argv[]){
         MPI_Reduce(&alive, &totalAlive, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
         if(procId == 0)
             printf("Geração %d: %d celulas vivas\n", g + 1, totalAlive);
+    }
+    if(procId == 0){
+        time += MPI_Wtime();
+        printf("Sessão paralela levou %lfs", time);
     }
     
     for(i = 0; i < N/noProcs + 2; i++){
