@@ -2,6 +2,4 @@
 
 Compile: gcc -o count_word count_word.c
 
-´´´
-Running: ./count_word <filename> <number of threads>
-´´´
+Running: ./count_word &lt filename &gt &lt number of threads &gt
